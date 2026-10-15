@@ -1,122 +1,81 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import Publica from './components/Publica';
+import Layout from './components/Layout';
 
-function App() {
-  const [count, setCount] = useState(0)
+import Entrada from './pages/Entrada';
+import Cadastro from './pages/Cadastro';
+import Login from './pages/Login';
+import EsqueciSenha from './pages/EsqueciSenha';
+import Perfil from './pages/Perfil';
+import AlterarSenha from './pages/AlterarSenha';
 
+import Inicio from './pages/Inicio';
+import EscolherServico from './pages/agendar/EscolherServico';
+import EscolherMecanico from './pages/agendar/EscolherMecanico';
+import EscolherHorario from './pages/agendar/EscolherHorario';
+import Confirmar from './pages/agendar/Confirmar';
+import Enviado from './pages/agendar/Enviado';
+import MeusAgendamentos from './pages/MeusAgendamentos';
+import Horario from './pages/Horario';
+import Avaliar from './pages/Avaliar';
+import Mecanicos from './pages/Mecanicos';
+import Mecanico from './pages/Mecanico';
+
+import Agenda from './pages/admin/Agenda';
+import AConfirmar from './pages/admin/AConfirmar';
+import Negocio from './pages/admin/Negocio';
+import Recursos from './pages/admin/Recursos';
+import Recurso from './pages/admin/Recurso';
+import Horarios from './pages/admin/Horarios';
+import Servicos from './pages/admin/Servicos';
+import Servico from './pages/admin/Servico';
+import Avaliacoes from './pages/admin/Avaliacoes';
+
+import NaoEncontrado from './pages/NaoEncontrado';
+
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <Routes>
+      <Route element={<Publica />}>
+        <Route path="/" element={<Entrada />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/esqueci-senha" element={<EsqueciSenha />} />
+      </Route>
 
-      <div className="ticks"></div>
+      <Route element={<Layout />}>
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/alterar-senha" element={<AlterarSenha />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/agendar" element={<EscolherServico />} />
+        <Route path="/agendar/mecanico" element={<EscolherMecanico />} />
+        <Route path="/agendar/horario" element={<EscolherHorario />} />
+        <Route path="/agendar/confirmar" element={<Confirmar />} />
+        <Route path="/agendar/enviado" element={<Enviado />} />
+        <Route path="/meus-agendamentos" element={<MeusAgendamentos />} />
+        <Route path="/agendamentos/:id" element={<Horario />} />
+        <Route path="/agendamentos/:id/avaliar" element={<Avaliar />} />
+        <Route path="/mecanicos" element={<Mecanicos />} />
+        <Route path="/mecanicos/:id" element={<Mecanico />} />
+      </Route>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Route element={<Layout permissao="api.change_organizacao" />}>
+        <Route path="/admin/agenda" element={<Agenda />} />
+        <Route path="/admin/a-confirmar" element={<AConfirmar />} />
+        <Route path="/admin/agendamentos/:id" element={<Horario />} />
+        <Route path="/admin/negocio" element={<Negocio />} />
+        <Route path="/admin/mecanicos" element={<Recursos />} />
+        <Route path="/admin/mecanicos/novo" element={<Recurso />} />
+        <Route path="/admin/mecanicos/:id" element={<Recurso />} />
+        <Route path="/admin/mecanicos/:id/horarios" element={<Horarios />} />
+        <Route path="/admin/servicos" element={<Servicos />} />
+        <Route path="/admin/servicos/novo" element={<Servico />} />
+        <Route path="/admin/servicos/:id" element={<Servico />} />
+        <Route path="/admin/avaliacoes" element={<Avaliacoes />} />
+      </Route>
+
+      <Route path="*" element={<NaoEncontrado />} />
+    </Routes>
+  );
 }
-
-export default App

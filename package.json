@@ -1,5 +1,5 @@
 {
-  "name": "pos-2026-projeto02",
+  "name": "Oficina-Mecanica",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.20.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.2",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",

@@ -1,15 +1,57 @@
-# Projeto React - POS 2026
+# App da Oficina Mecânica
 
-Nesse projeto vocês deverão criar clientes web com React (JS) para a API de Agendamentos da disciplina.
+Aplicação web desenvolvida para o gerenciamento de uma oficina mecânica, permitindo que clientes agendem serviços e que administradores gerenciem os atendimentos.
 
-## Instruções
+## Tecnologias utilizadas
 
-- Criem um fork desse repositório (um por grupo). No momento da criação do fork mudem o nome do repositório para o nome do cliente de vocês. Lembrem-se de mudar também o nome no `package.json`.
-- Na pasta `docs/` estão as especificações para cada projeto, siga o destinado ao seu grupo.
-- No GSA foi enviada a lista dos grupos com usuários admin e senhas. Recomendo que mudem as senhas assim que tiverem acesso.
-- Todos os participantes devem ter commits no repositóro.
-- Substituam esse `README.md` com informações do seu projeto.
-- Usem o projeto da [Escola de Música](https://pos-escola-de-musica-web.vercel.app/) como referência [GitHub](https://github.com/dvcirilo-ifrn/pos-escola-de-musica-web)
-- O projeto deve ser hospedado no [Vercel](https://vercel.com/).
-- Na data da entrega o projeto deverá ser demonstrado diretamente do Vercel e serão feitas perguntas referentes à implementação.
-- *Data de entrega*: 16/10/2026
+- **React** — construção da interface com componentes.
+- **JavaScript** — lógica e funcionalidades da aplicação.
+- **JSX** — estruturação dos componentes.
+- **Bootstrap** — estilização e layout responsivo.
+- **API REST** — integração com o backend para gerenciamento dos dados.
+
+## Funcionalidades
+
+### Clientes
+- Cadastro e autenticação de usuários.
+- Visualização dos serviços disponíveis.
+- Consulta de mecânicos e horários disponíveis.
+- Agendamento e acompanhamento de serviços.
+- Cancelamento de agendamentos, conforme as regras da aplicação.
+- Avaliação dos serviços realizados.
+
+### Administradores
+- Gerenciamento de serviços e mecânicos.
+- Gerenciamento de horários e disponibilidades.
+- Visualização e gerenciamento dos agendamentos.
+- Controle do andamento dos atendimentos.
+
+## Execução do projeto
+
+1. Clone o repositório:
+   ```bash
+   git clone <https://github.com/MatheusFabSouza/oficina-mecanica>
+   ```
+
+2. Acesse a pasta do projeto:
+   ```bash
+   cd <https://github.com/MatheusFabSouza/oficina-mecanica>
+   ```
+
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+4. Inicie a aplicação:
+   ```bash
+   npm run dev
+   ```
+
+## API
+
+A aplicação utiliza uma API REST externa para autenticação, consulta e gerenciamento dos dados.
+
+- **Documentação:** https://agendamentos.spaincentral.cloudapp.azure.com/api/docs/
+- **Organização:** `oficina-mecanica`
+
