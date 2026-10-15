@@ -29,7 +29,7 @@ export default function Servico() {
       const s = servicoReq.dados;
       setNome(s.nome || '');
       setDescricao(s.descricao || '');
-      setDuracao(s.duracao ?? 30);
+      setDuracao(s.duracao_min ?? s.duracao ?? 30);
       setPreco(s.preco ?? '');
       const ids = (s.recursos || []).map((r) => (typeof r === 'object' ? r.id : r));
       setRecursos(ids);
@@ -76,8 +76,8 @@ export default function Servico() {
       const dadosJson = {
         nome,
         descricao,
-        duracao: Number(duracao),
-        preco: String(preco),
+        duracao_min: Number(duracao),
+        preco: Number(preco),
         recursos,
         ativo,
       };
@@ -95,9 +95,13 @@ export default function Servico() {
         await api.patch(`/servicos/${salvo.id}/`, formData);
       }
 
+      alert(editando ? 'Serviço atualizado com sucesso!' : 'Serviço cadastrado com sucesso!');
       navigate('/admin/servicos');
     } catch (err) {
+      console.error("Detalhes completos do erro:", err);
       setErroSalvar(err);
+      const msgCampos = err.campos ? JSON.stringify(err.campos) : (err.geral || 'Erro desconhecido');
+      alert('Erro ao salvar o serviço: ' + msgCampos);
     } finally {
       setSalvando(false);
     }
@@ -152,17 +156,17 @@ export default function Servico() {
             <input
               type="number"
               min={1}
-              className={`form-control ${erroSalvar?.campos?.duracao ? 'is-invalid' : ''}`}
+              className={`form-control ${erroSalvar?.campos?.duracao_min ? 'is-invalid' : ''}`}
               value={duracao}
               onChange={(e) => setDuracao(e.target.value)}
               required
             />
-            {erroSalvar?.campos?.duracao && (
-              <div className="invalid-feedback">{erroSalvar.campos.duracao}</div>
+            {erroSalvar?.campos?.duracao_min && (
+              <div className="invalid-feedback">{erroSalvar.campos.duracao_min}</div>
             )}
           </div>
           <div className="col-md-6">
-            <label className="form-label">Preço (R\$)</label>
+            <label className="form-label">Preço (R$)</label>
             <input
               type="number"
               step="0.01"

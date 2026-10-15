@@ -18,7 +18,9 @@ export default function EscolherMecanico() {
   if (carregando) return <Carregando />;
   if (erro) return <Erro erro={erro} onRetry={recarregar} />;
 
-  const mecanicos = (dados || []).filter((m) => m.ativo !== false);
+  const listaRecursos = Array.isArray(dados) ? dados : (dados?.results || dados?.data || []);
+
+  const mecanicos = listaRecursos.filter((m) => m.ativo !== false);
 
   const escolher = (mecanico) => {
     navigate('/agendar/horario', { state: { servico, mecanico } });

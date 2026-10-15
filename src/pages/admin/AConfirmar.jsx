@@ -29,7 +29,7 @@ export default function AConfirmar() {
   if (carregando) return <Carregando />;
   if (erro) return <Erro erro={erro} onRetry={recarregar} />;
 
-  const lista = dados || [];
+  const lista = Array.isArray(dados) ? dados : (dados?.results || dados?.data || []);
 
   return (
     <div>

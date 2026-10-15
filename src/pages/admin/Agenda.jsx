@@ -20,8 +20,8 @@ export default function Agenda() {
     setCarregando(true);
     setErro(null);
     try {
-      const filtroRecurso = recursoId ? `&recurso=\${recursoId}` : '';
-      const url = `/agendamentos/?data_inicio=\${data}&data_fim=${data}${filtroRecurso}`;
+      const filtroRecurso = recursoId ? `&recurso=${recursoId}` : '';
+      const url = `/agendamentos/?data_inicio=${data}&data_fim=${data}${filtroRecurso}`;
       const lista = await api.getAllPages(url);
       setItens(lista);
     } catch (err) {

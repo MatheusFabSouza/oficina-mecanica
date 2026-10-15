@@ -62,7 +62,7 @@ export default function EscolherHorario() {
 
   const query = servico
     ? `/horarios-livres/?servico=${servico.id}&data=${data}${
-        mecanico ? `&recurso=\${mecanico.id}` : ''
+        mecanico ? `&recurso=${mecanico.id}` : ''
       }`
     : null;
 
