@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useApi } from '../hooks/useApi';
-import { hojeISO, ontemISO } from '../formatos';
 import Carregando from '../components/Carregando';
 import Erro from '../components/Erro';
 import ListaHorarios from '../components/ListaHorarios';
@@ -9,13 +8,25 @@ import CarregarMais from '../components/CarregarMais';
 export default function MeusAgendamentos() {
   const [aba, setAba] = useState('proximos');
 
-  const endpoint =
-    aba === 'proximos'
-      ? `/agendamentos/?data_inicio=${hojeISO()}`
-      : `/agendamentos/?data_fim=${ontemISO()}&ordering=-inicio`;
-
+  // Buscamos os agendamentos gerais para filtrar localmente com precisão por status
   const { dados, carregando, carregandoMais, erro, proximaPagina, recarregar, carregarMais } =
-    useApi(endpoint, { paginado: true });
+    useApi('/agendamentos/', { paginado: true });
+
+  const listaAgendamentos = dados || [];
+
+  // Filtro para a aba "Próximos": apenas os que estão "em andamento" (ou solicitados/confirmados se aplicável)
+  const proximosFiltrados = listaAgendamentos.filter((item) => {
+    const status = (item.status || '').toLowerCase();
+    return status === 'em_andamento' || status === 'em andamento' || status === 'solicitado' || status === 'confirmado';
+  });
+
+  // Filtro para a aba "Histórico": estritamente os concluídos
+  const historicoFiltrados = listaAgendamentos.filter((item) => {
+    const status = (item.status || '').toLowerCase();
+    return status === 'concluido' || status === 'concluído';
+  });
+
+  const itensExibidos = aba === 'proximos' ? proximosFiltrados : historicoFiltrados;
 
   return (
     <div>
@@ -28,7 +39,7 @@ export default function MeusAgendamentos() {
             className={`nav-link ${aba === 'proximos' ? 'active' : ''}`}
             onClick={() => setAba('proximos')}
           >
-            Próximos
+            Próximos (Em andamento)
           </button>
         </li>
         <li className="nav-item">
@@ -37,7 +48,7 @@ export default function MeusAgendamentos() {
             className={`nav-link ${aba === 'historico' ? 'active' : ''}`}
             onClick={() => setAba('historico')}
           >
-            Histórico
+            Histórico (Concluídos)
           </button>
         </li>
       </ul>
@@ -48,7 +59,10 @@ export default function MeusAgendamentos() {
         <Erro erro={erro} onRetry={recarregar} />
       ) : (
         <>
-          <ListaHorarios itens={dados} vazio="Nenhum serviço agendado aqui" />
+          <ListaHorarios 
+            itens={itensExibidos} 
+            vazio={aba === 'proximos' ? 'Nenhum serviço em andamento no momento' : 'Nenhum serviço concluído no histórico'} 
+          />
           <CarregarMais
             temMais={Boolean(proximaPagina)}
             carregando={carregandoMais}
