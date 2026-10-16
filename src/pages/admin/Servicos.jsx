@@ -41,11 +41,16 @@ export default function Servicos() {
                 className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
               >
                 <div className="d-flex align-items-center gap-3">
-                  <Foto src={s.imagem || s.foto} alt={s.nome} tamanho={48} />
+                  <Foto 
+                    src={s.imagem || s.foto} 
+                    alt={s.nome} 
+                    tamanho={120} 
+                    className="foto-carro-servico" 
+                  />
                   <div>
                     <div className="fw-bold">{s.nome}</div>
                     <small className="text-muted">
-                      {formatarDuracao(s.duracao)} • {formatarPreco(s.preco)}
+                      {formatarDuracao(s.duracao)} - {formatarPreco(s.preco)}
                     </small>
                   </div>
                 </div>
