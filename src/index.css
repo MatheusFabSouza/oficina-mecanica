@@ -157,3 +157,21 @@ img.foto-carro-servico,
   object-fit: cover !important;
   border-radius: 0.5rem !important;
 }
+
+.container img + div, 
+.row:has(img) {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  gap: 2rem !important;
+}
+
+.container img ~ div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+  max-width: 400px !important;
+}

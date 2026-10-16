@@ -31,11 +31,18 @@ export default function Inicio() {
   );
 
   return (
-    <div>
-      <div className="d-flex align-items-center gap-3 mb-4">
-        <Foto src={org.dados?.logo} alt={org.dados?.nome || 'Oficina'} tamanho={64} />
+    <div className="container py-4">
+      {/* Bloco do Topo / Banner da Oficina */}
+      <div className="card shadow-sm p-4 mb-4 text-center">
+        <div className="mb-3 d-flex justify-content-center">
+          <Foto 
+            src={org.dados?.logo} 
+            alt={org.dados?.nome || 'Oficina'} 
+            className="banner-oficina-topo img-fluid rounded" 
+          />
+        </div>
         <div>
-          <h2 className="mb-1">{org.dados?.nome || 'Oficina Mecânica'}</h2>
+          <h2 className="mb-2 fw-bold">{org.dados?.nome || 'Oficina Mecânica'}</h2>
           {org.dados?.descricao && <p className="text-muted mb-0">{org.dados.descricao}</p>}
         </div>
       </div>
@@ -49,8 +56,8 @@ export default function Inicio() {
           </Link>
         </div>
       ) : (
-        <div className="card p-3">
-          <p className="text-muted mb-2">Você não tem serviços agendados</p>
+        <div className="card p-4 shadow-sm">
+          <p className="text-muted mb-3">Você não tem serviços agendados</p>
           <div>
             <Link to="/agendar" className="btn btn-primary">
               Agendar
