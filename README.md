@@ -28,6 +28,10 @@ Aplicação web desenvolvida para o gerenciamento de uma oficina mecânica, perm
 
 ## Execução do projeto
 
+0. Acesse: https://oficina-mecanica-weld.vercel.app/ 
+
+- ou se quiser fazer no vscode...
+
 1. Clone o repositório:
    ```bash
    git clone https://github.com/MatheusFabSouza/oficina-mecanica.git

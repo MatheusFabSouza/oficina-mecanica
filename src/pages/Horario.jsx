@@ -59,8 +59,7 @@ export default function Horario() {
   const podeCancelar =
     temPermissao('api.cancelar_agendamento') &&
     (item.status === 'solicitado' || item.status === 'confirmado');
-  const podeAvaliar = 
-    temPermissao('api.avaliar_agendamento') &&
+  const podeAvaliar =
     item.status === 'concluido' &&
     (item.nota == null || item.nota === '');
   const servico = item.servico_nome || item.servico?.nome || `Serviço #${item.servico}`;
