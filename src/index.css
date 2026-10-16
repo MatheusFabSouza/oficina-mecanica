@@ -1,111 +1,124 @@
+/* --- TEMA AZUL PROFISSIONAL & VIBRANTE --- */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --bs-primary: #0284c7; /* Azul principal vivo */
+  --bs-primary-rgb: 2, 132, 199;
+  --bs-body-bg: #f0f6ff; /* Fundo azul-claro gelo muito elegante */
+  --bs-body-color: #0f172a; /* Texto em tom azul-escuro profundo */
+  --bs-card-bg: #ffffff;
+  --bs-card-border-color: #dbeafe;
+  --bs-border-color: #cbd5e1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
+/* Corpo do site com fundo texturizado em degradê azul subtil */
 body {
-  margin: 0;
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(38, 145, 239, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(2, 132, 199, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* Navbar / Cabeçalho em tom de azul profundo e sofisticado com efeito translúcido */
+nav, .navbar {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.25) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
+/* Textos e links da Navbar */
+.navbar-brand, .nav-link {
+  color: #e0f2fe !important;
   font-weight: 500;
-  color: var(--text-h);
+  transition: color 0.2s ease;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+.nav-link:hover, .nav-link:focus, .navbar-brand:hover {
+  color: #38bdf8 !important; /* Azul celeste luminoso ao passar o rato */
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Cards modernos com borda em tom azul claro e sombra suave */
+.card {
+  background-color: var(--bs-card-bg) !important;
+  color: var(--bs-body-color) !important;
+  border: 1px solid var(--bs-card-border-color) !important;
+  box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.08), 0 8px 10px -6px rgba(30, 58, 138, 0.04);
+  border-radius: 1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(30, 58, 138, 0.12);
+  border-color: #93c5fd !important;
+}
+
+/* Formulários e Inputs com foco em azul vivo */
+.form-control, .form-select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #bfdbfe !important;
+  border-radius: 0.6rem;
+  padding: 0.65rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+}
+
+.form-control::placeholder {
+  color: #93c5fd !important;
+}
+
+/* Botões principais com gradiente vibrante de azul */
+.btn-primary {
+  background: linear-gradient(135deg, #0284c7 0%, #1d4ed8 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  border-radius: 0.6rem;
+  padding: 0.6rem 1.35rem;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(29, 78, 216, 0.4);
+  background: linear-gradient(135deg, #0369a1 0%, #1e40af 100%) !important;
+}
+
+/* Botões secundários ou de sucesso com harmonia azul/esverdeada suave */
+.btn-success {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  border: none !important;
+}
+
+/* Textos secundários emuted */
+.text-muted {
+  color: #475569 !important;
+}
+
+/* Títulos com destaque marcante */
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* Tabelas limpas com cabeçalhos e linhas em harmonia */
+table {
+  color: var(--bs-body-color) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: rgba(219, 234, 254, 0.3) !important;
+  color: var(--bs-body-color) !important;
 }
