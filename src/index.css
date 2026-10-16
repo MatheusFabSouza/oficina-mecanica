@@ -19,7 +19,8 @@ body {
   min-height: 100vh;
 }
 
-img {
+/* Imagens padrão do sistema (mantém proporção sem travar tudo) */
+.img-fluid {
   max-width: 100%;
   height: auto;
 }
@@ -116,37 +117,15 @@ table {
   color: var(--body-color) !important;
 }
 
-img, .card-img-top, .img-fluid, .servico-img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 220px !important;
-  object-fit: cover !important;
-  border-radius: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-img.rounded-circle, .mecanico-img img, .card img {
-  width: 150px !important;    
-  height: 150px !important;   
-  object-fit: cover !important;
-  border: 4px solid #dbeafe; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 .mecanicos-lista, .row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
 }
 
+/* --- TAMANHO EXCLUSIVO PARA OS CARROS NA LISTA DE SERVIÇOS --- */
 img.foto-carro-servico, 
-.list-group-item .foto-carro-servico {
-  width: 140px !important;
-  height: 90px !important;
-  object-fit: cover !important;
-  border-radius: 0.5rem;
-}
-
+.list-group-item .foto-carro-servico,
 .list-group-item img,
 .list-group-item span img,
 .list-group-item div img {
@@ -156,22 +135,23 @@ img.foto-carro-servico,
   min-height: 90px !important;
   object-fit: cover !important;
   border-radius: 0.5rem !important;
+  margin-bottom: 0 !important;
 }
 
-.container img + div, 
-.row:has(img) {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-wrap: nowrap !important;
-  gap: 2rem !important;
+/* --- BANNER DO TOPO DA HOME --- */
+img.banner-oficina-topo {
+  width: 100% !important;
+  max-height: 220px !important;
+  object-fit: cover !important;
+  border-radius: 0.5rem !important;
 }
 
-.container img ~ div {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  text-align: left !important;
-  max-width: 400px !important;
+/* --- AVATARES DOS MECÂNICOS (REDONDOS) --- */
+img.rounded-circle, .mecanico-img img {
+  width: 100px !important;    
+  height: 100px !important;   
+  object-fit: cover !important;
+  border: 4px solid #dbeafe; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 50% !important;
 }
