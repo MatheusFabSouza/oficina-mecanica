@@ -37,6 +37,7 @@ export default function Horario() {
 
   if (erro) return <Erro erro={erro} onRetry={recarregar} />;
   if (!item) return null;
+  
 
   const executarAcao = async (acao) => {
     setExecutando(true);
@@ -58,11 +59,10 @@ export default function Horario() {
   const podeCancelar =
     temPermissao('api.cancelar_agendamento') &&
     (item.status === 'solicitado' || item.status === 'confirmado');
-  const podeAvaliar =
+  const podeAvaliar = 
     temPermissao('api.avaliar_agendamento') &&
     item.status === 'concluido' &&
-    !item.nota;
-
+    (item.nota == null || item.nota === '');
   const servico = item.servico_nome || item.servico?.nome || `Serviço #${item.servico}`;
   const mecanico = item.recurso_nome || item.recurso?.nome || `Mecânico #${item.recurso}`;
   const cliente = item.cliente_nome || item.cliente?.nome || item.usuario?.nome;
