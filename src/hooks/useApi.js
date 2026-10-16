@@ -19,8 +19,13 @@ export function useApi(endpoint, { paginado = false, auto = true } = {}) {
           setDados(res);
           setProximaPagina(null);
         } else {
-          setDados(res?.results || []);
-          setProximaPagina(res?.next || null);
+          const lista = Array.isArray(res?.results)
+            ? res.results
+            : Array.isArray(res?.data)
+              ? res.data
+              : [];
+          setDados(lista);
+          setProximaPagina(res?.next || res?.links?.next || null);
         }
       } else {
         setDados(res);
@@ -37,8 +42,15 @@ export function useApi(endpoint, { paginado = false, auto = true } = {}) {
     setCarregandoMais(true);
     try {
       const res = await api.get(proximaPagina);
-      setDados((atual) => [...atual, ...(res?.results || [])]);
-      setProximaPagina(res?.next || null);
+      const novos = Array.isArray(res)
+        ? res
+        : Array.isArray(res?.results)
+          ? res.results
+          : Array.isArray(res?.data)
+            ? res.data
+            : [];
+      setDados((atual) => [...(Array.isArray(atual) ? atual : []), ...novos]);
+      setProximaPagina(res?.next || res?.links?.next || null);
     } catch (err) {
       setErro(err);
     } finally {

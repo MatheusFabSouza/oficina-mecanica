@@ -15,7 +15,7 @@ export default function Avaliacoes() {
   const qs = params.toString();
 
   const mecanicos = useApi('/recursos/', { paginado: true });
-  const avals = useApi(`/avaliacoes/${qs ? `?\${qs}` : ''}`, { paginado: true });
+  const avals = useApi(`/avaliacoes/${qs ? `?${qs}` : ''}`, { paginado: true });
 
   return (
     <div>

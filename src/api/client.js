@@ -1,4 +1,7 @@
-const BASE_URL = import.meta.env.VITE_API_URL || 'https://agendamentos.spaincentral.cloudapp.azure.com/api';
+const BASE_URL = (
+  import.meta.env.VITE_API_URL ||
+  'https://agendamentos.spaincentral.cloudapp.azure.com/api'
+).replace(/\/+$/, '');
 export const ORGANIZACAO = import.meta.env.VITE_ORGANIZACAO || 'oficina-mecanica';
 
 export function getAccessToken() {
@@ -81,27 +84,28 @@ async function renovarToken() {
 }
 
 export async function request(path, options = {}, retry = true) {
+  const { publico = false, ...fetchOptions } = options;
   const url = path.startsWith('http') ? path : `${BASE_URL}${path}`;
-  const isFormData = options.body instanceof FormData;
-  const headers = { ...(options.headers || {}) };
+  const isFormData = fetchOptions.body instanceof FormData;
+  const headers = { ...(fetchOptions.headers || {}) };
 
-  if (!isFormData && options.body && !headers['Content-Type']) {
+  if (!isFormData && fetchOptions.body && !headers['Content-Type']) {
     headers['Content-Type'] = 'application/json';
   }
 
   const token = getAccessToken();
-  if (token && !options.publico) {
+  if (token && !publico) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
   const config = {
-    ...options,
+    ...fetchOptions,
     headers,
     body: isFormData
-      ? options.body
-      : options.body && typeof options.body === 'object'
-      ? JSON.stringify(options.body)
-      : options.body,
+      ? fetchOptions.body
+      : fetchOptions.body && typeof fetchOptions.body === 'object'
+        ? JSON.stringify(fetchOptions.body)
+        : fetchOptions.body,
   };
 
   let res;
@@ -111,7 +115,7 @@ export async function request(path, options = {}, retry = true) {
     throw { status: 0, campos: {}, geral: 'Falha de conexão com o servidor.' };
   }
 
-  if (res.status === 401 && retry && !options.publico) {
+  if (res.status === 401 && retry && !publico) {
     const novoToken = await renovarToken();
     if (novoToken) {
       return request(path, options, false);
@@ -141,7 +145,7 @@ export const api = {
   post: (path, body, options) => request(path, { ...options, method: 'POST', body }),
   patch: (path, body, options) => request(path, { ...options, method: 'PATCH', body }),
   delete: (path, options) => request(path, { ...options, method: 'DELETE' }),
-   getAllPages: async (path) => {
+  getAllPages: async (path) => {
     let resultados = [];
     let proximo = path;
     while (proximo) {

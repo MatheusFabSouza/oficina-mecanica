@@ -11,8 +11,6 @@ export default function EscolherServico() {
   const mecanicoPreSelecionado = location.state?.mecanico || null;
   const respostaApi = useApi('/servicos/', { paginado: true });
 
-  console.log("RESPOSTA COMPLETA DA API /servicos/:", respostaApi);
-
   if (respostaApi.carregando) return <Carregando />;
   if (respostaApi.erro) return <Erro erro={respostaApi.erro} onRetry={respostaApi.recarregar} />;
 
@@ -30,8 +28,6 @@ export default function EscolherServico() {
     const possibleArray = Object.values(dados).find(val => Array.isArray(val));
     if (possibleArray) listaServicos = possibleArray;
   }
-
-  console.log("Lista de serviços processada:", listaServicos);
 
   const servicos = listaServicos.filter((s) => {
 

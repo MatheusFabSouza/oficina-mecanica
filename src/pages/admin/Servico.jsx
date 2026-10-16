@@ -32,7 +32,7 @@ export default function Servico() {
       setDuracao(s.duracao_min ?? s.duracao ?? 30);
       setPreco(s.preco ?? '');
       const ids = (s.recursos || []).map((r) => (typeof r === 'object' ? r.id : r));
-      setRecursos(ids);
+      setRecursos(ids.map((idRecurso) => Number(idRecurso)));
       setAtivo(s.ativo !== false);
     }
   }, [servicoReq.dados]);

@@ -46,11 +46,23 @@ export default function Mecanico() {
 
   const mecanico = rec.dados;
   const todosServicos = servs.dados || [];
-  const servicosDoMecanico = todosServicos.filter(
-    (s) =>
-      (Array.isArray(mecanico?.servicos) && mecanico.servicos.includes(s.id)) ||
-      (Array.isArray(s.recursos) && s.recursos.includes(mecanico?.id))
-  );
+  const servicosDoMecanico = todosServicos.filter((s) => {
+    const idsDosServicos = Array.isArray(mecanico?.servicos)
+      ? mecanico.servicos.map((item) => (item && typeof item === 'object' ? item.id : item))
+      : [];
+    const idsDosRecursos = Array.isArray(s.recursos)
+      ? s.recursos.map((item) => (item && typeof item === 'object' ? item.id : item))
+      : [];
+
+    const servicoDoMecanico = idsDosServicos.some(
+      (idServico) => idServico != null && String(idServico) === String(s.id)
+    );
+    const mecanicoDoServico = idsDosRecursos.some(
+      (idRecurso) => idRecurso != null && String(idRecurso) === String(mecanico?.id)
+    );
+
+    return servicoDoMecanico || mecanicoDoServico;
+  });
 
   return (
     <div>

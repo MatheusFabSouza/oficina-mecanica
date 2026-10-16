@@ -1,5 +1,5 @@
 {
-  "name": "Oficina-Mecanica",
+  "name": "oficina-mecanica",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -23,5 +23,8 @@
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
     "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
